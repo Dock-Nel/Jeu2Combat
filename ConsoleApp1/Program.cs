@@ -12,12 +12,26 @@ class Program
         {
             Personnage persoHumain = null;
             Personnage persoIA = null;
+<<<<<<< Updated upstream
+=======
+            int diffPlayer;
+>>>>>>> Stashed changes
 
             Console.WriteLine("+----------------------------------+");
             Console.WriteLine("| Realy Fantastic Fighting Game    |");
             Console.WriteLine("+----------------------------------+");
             Console.WriteLine("\nBienvenue dans l'arène !\n");
 
+<<<<<<< Updated upstream
+=======
+            Console.WriteLine("Dans quelle difficulté voulez-vous jouer :");
+            Console.WriteLine("1 - Facile");
+            Console.WriteLine("2 - Normale");
+            Console.WriteLine("3 - Difficle");
+            Console.Write("Choix : ");
+            string difficulteChoix = Console.ReadLine();
+
+>>>>>>> Stashed changes
             int choixJ = 0;
             while (choixJ < 1 || choixJ > 3)
             {
@@ -192,7 +206,12 @@ class Program
                             break;
                     }
 
+<<<<<<< Updated upstream
                     if (persoIA.health <= 0 || persoHumain.health <= 0) break;
+=======
+                   
+                    if (persoIA.health <= 0 || persoHumain.health <= 0 ) break;
+>>>>>>> Stashed changes
 
                     // Action de l'IA
                     switch (choixIa)
