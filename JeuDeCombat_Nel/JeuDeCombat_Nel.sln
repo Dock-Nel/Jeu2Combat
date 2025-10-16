@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36518.9 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JeuDeCombat_Nel", "JeuDeCombat_Nel\JeuDeCombat_Nel.csproj", "{EC17CACE-2AEB-485C-9F44-FB687722745E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC17CACE-2AEB-485C-9F44-FB687722745E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC17CACE-2AEB-485C-9F44-FB687722745E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC17CACE-2AEB-485C-9F44-FB687722745E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC17CACE-2AEB-485C-9F44-FB687722745E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {29C5ADAC-535E-40A5-97C2-00AC3B62776F}
+	EndGlobalSection
+EndGlobal
