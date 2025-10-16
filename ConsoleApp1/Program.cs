@@ -25,6 +25,9 @@ class Program
                 Console.WriteLine("1 - Damager ");
                 Console.WriteLine("2 - Healer");
                 Console.WriteLine("3 - Tank");
+
+                Console.WriteLine("4 - Ecid");  //AJOUT PERSO SUP : /
+
                 Console.Write("Choix : ");
                 string saisieChoix = Console.ReadLine();
                 if (!int.TryParse(saisieChoix, out choixJ) || choixJ < 1 || choixJ > 3)
@@ -42,13 +45,16 @@ class Program
                 case 3:
                     persoHumain = new Tank();
                     break;
+                case 4;
+                    persoHumain = new Ecid(); //← here
+                    break;
             }
 
             Console.WriteLine("\n\nTu as choisis de jouer un " + persoHumain.name + ".");
             System.Threading.Thread.Sleep(1000);
 
             Random random = new Random();
-            int nombreRNG = random.Next(1, 4);
+            int nombreRNG = random.Next(1, 5); //← here : choix entre 1 & 4
 
             switch (nombreRNG)
             {
@@ -60,6 +66,9 @@ class Program
                     break;
                 case 3:
                     persoIA = new Tank();
+                    break;
+                case 4;
+                    persoHumain = new Ecid(); //← here
                     break;
             }
 
@@ -93,13 +102,13 @@ class Program
                 } while (choixAttaque < 1 || choixAttaque > 3);
                 Console.WriteLine($"vous avez choisi : {choixAttaque}\n");
 
-                int choixIa = random.Next(1, 4);
+                int choixIa = random.Next(1, 5); //← ici, changemment de 4 à 5 pour inclure le choix IA du perso Ecid
 
                 // Gestion spéciale des interactions Damager vs Damager
                 bool actionSpeciale = false;
                 if (persoHumain is Damager damagerH && persoIA is Damager damagerIA)
                 {
-                    if (choixAttaque == 3 && choixIa == 1)
+                    if (choixAttaque == 3 && choixIa == 1) // Joueur Humain → Action spéciale VS IA → Attaque 
                     {
                         damagerH.health -= damagerIA.attack;
                         damagerIA.health -= damagerIA.attack;
@@ -109,7 +118,7 @@ class Program
                         actionSpeciale = true;
                         if (damagerH.health <= 0 || damagerIA.health <= 0) break;
                     }
-                    else if (choixAttaque == 1 && choixIa == 3)
+                    else if (choixAttaque == 1 && choixIa == 3) // Joueur Humain → Attaque VS IA → Action spéciale
                     {
                         damagerIA.health -= damagerH.attack;
                         damagerH.health -= damagerH.attack;
@@ -119,7 +128,7 @@ class Program
                         actionSpeciale = true;
                         if (damagerH.health <= 0 || damagerIA.health <= 0) break;
                     }
-                    else if (choixAttaque == 3 && choixIa == 3)
+                    else if (choixAttaque == 3 && choixIa == 3) // Joueur humain → Action spéciale VS IA Action spéciale 
                     {
                         damagerH.health -= damagerIA.attack;
                         damagerIA.health -= damagerH.attack;
@@ -139,8 +148,15 @@ class Program
                         case 1:
                             if (choixIa != 2)
                             {
-                                persoHumain.Attaquer(persoIA);
-                                persoIA.health = Math.Max(0, persoIA.health);
+                                if (persoHumain is Ecid)
+                                {
+                                    persoHumain.EcidAttack(persoIA.health); 
+                                }
+                                else
+                                {
+                                    persoHumain.Attaquer(persoIA);
+                                    persoIA.health = Math.Max(0, persoIA.health); /// JSP ??? 
+                                }
                             }
                             else
                             {
@@ -322,6 +338,21 @@ public class Personnage
         if (ennemiAttack)
             this.health -= Math.Max(0, attaquant.attack - 1);
     }
+
+    public void EcidAttack(Personnage cible)
+    {
+        int rollDice = random.Next(1, 101);
+
+        if (rollDice <= 20)
+        {
+            cible.health -= 2;
+        }
+        else
+        {
+            cible.health -= 1;
+        }
+    }
+
 }
 
 public class Damager : Personnage
@@ -374,3 +405,35 @@ public class Tank : Personnage
         this.health -= 1;
     }
 }
+
+public class Ecid : Personnage
+{
+    public string SpecialAttackName { get; } = "Tiafrap";
+
+    public void Tiafrap(Personnage cible)
+
+    public Ecid() : base("Ecid", 4, 0 )  /* ) /// MODIF A FAIRE : Changer valeur 3e paramètre, initialment la valeur de l' *//
+    {
+        int rollDice = random.Next(1, 101);
+
+        if (rollDice <= 10)
+        {
+            this.health -= 1;
+        }
+        else if (rollDice <= 20)
+        {
+            cible.health -= 0; /* Rien ne se passe */
+        }
+        else if (rollDice <= 60)
+{
+    cible.health -= 1;
+}
+else if (rollDice <= 80)
+{
+    cible.health -= 2;
+}
+else
+{
+    cible.health = 0; /* */
+}
+    }
