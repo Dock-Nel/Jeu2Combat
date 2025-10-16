@@ -1,0 +1,4 @@
+# Dossiers à ignorer
+.vs/
+bin/
+obj/
