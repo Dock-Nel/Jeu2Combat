@@ -6,6 +6,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 class Program
 {
+
     static void Main()
     {
         while (true)
@@ -104,7 +105,7 @@ class Program
 
                 int choixIa = random.Next(1, 5); //← ici, changemment de 4 à 5 pour inclure le choix IA du perso Ecid
 
-                // Gestion spéciale des interactions Damager vs Damager
+                // Gestion spécifique des interactions Damager vs Damager
                 bool actionSpeciale = false;
                 if (persoHumain is Damager damagerH && persoIA is Damager damagerIA)
                 {
@@ -138,24 +139,41 @@ class Program
                         actionSpeciale = true;
                         if (damagerH.health <= 0 || damagerIA.health <= 0) break;
                     }
+
+                }
+                else if (persoHumain is Ecid ecid)
+                {
+                    if (choixAttaque == 3 choixIa == 2) // Si Ecid fait une attaque spéciale et que le choix de L'IA est la défense 
+                    {
+                        if (ecid.oneShotEcid) // Si le lancer de dé tombe sur ONE SHOT 
+                        {
+                            Console.WriteLine("Vous utilisez l'attaque spéciale Tiafrap, l'IA se défend, mais One Shot de l'adversaire !")
+                            ecid.oneShotEcid = false; // ??? Remise à zéro de la booléenne 
+                        }
+                        else
+                        {
+                            Console.WriteLine("Vous utilisez l'attaque spéciale Tiafrap, mais l'IA se défend !")
+                             //ANNULER METHODE ATTAQUE SPE ??
+                        }
+                    }
                 }
 
                 if (!actionSpeciale)
                 {
-                    // Action du joueur
+                    // Actions du joueur : Attaques classiques 
                     switch (choixAttaque)
                     {
-                        case 1:
-                            if (choixIa != 2)
+                        case 1: 
+                            if (choixIa != 2) // Si l'IA ne se défend pas 
                             {
-                                if (persoHumain is Ecid)
+                                if (persoHumain is Ecid) // Si le personnage joué est ECID 
                                 {
-                                    persoHumain.EcidAttack(persoIA.health); 
+                                    persoHumain.EcidAttack(persoIA.health); // Attaque spécifique à ECID 
                                 }
-                                else
+                                else // Si c'est un personnage autre que ECID 
                                 {
                                     persoHumain.Attaquer(persoIA);
-                                    persoIA.health = Math.Max(0, persoIA.health); /// JSP ??? 
+                                    persoIA.health = Math.Max(0, persoIA.health); 
                                 }
                             }
                             else
@@ -163,40 +181,40 @@ class Program
                                 Console.WriteLine("Vous attaquez mais l'IA se défend !");
                             }
                             break;
-                        case 2:
+                        case 2: /// Si le joueur choisis de se défendre
                             Console.WriteLine("Vous prenez une posture défensive.");
                             break;
-                        case 3:
-                            if (persoHumain is Healer healer)
+                        case 3: 
+                            if (persoHumain is Healer healer) 
                             {
-                                if (healer.Soin())
+                                if (healer.Soin()) 
                                     Console.WriteLine("Vous vous êtes soigné !");
                                 else
                                     Console.WriteLine("Vous ne pouvez pas vous heal plus que votre vie de base");
                                 healer.health = Math.Min(healer.health, healer.baseHealth);
                             }
-                            else if (persoHumain is Damager damager)
+                            else if (persoHumain is Damager damager)  
                             {
-                                if (choixIa == 2)
+                                if (choixIa == 2) // Et que l'IA se défend 
                                 {
                                     Console.WriteLine("Vous utilisez Rage mais l'IA se défend, cela n'a donc aucun effet !");
                                 }
-                                else
+                                else // Si l'IA ne se défend pas 
                                 {
                                     damager.RageAction(persoIA);
                                 }
-                                damager.health = Math.Max(0, damager.health);
-                                persoIA.health = Math.Max(0, persoIA.health);
+                                damager.health = Math.Max(0, damager.health);  
+                                persoIA.health = Math.Max(0, persoIA.health); 
                             }
-                            else if (persoHumain is Tank tank)
+                            else if (persoHumain is Tank tank) 
                             {
-                                if (choixIa == 2)
+                                if (choixIa == 2) // Si l'IA choisis la Défense 
                                 {
                                     persoIA.health -= 1;
                                     persoHumain.health -= 1;
                                     persoIA.health = Math.Max(0, persoIA.health);
                                     persoHumain.health = Math.Max(0, persoHumain.health);
-                                    Console.WriteLine("Vous utilisez Attaque Puissante mais l'IA défend ! 1 dégât passe quand même.");
+                                    Console.WriteLine("Vous utilisez Attaque Puissante mais l'IA se défend ! 1 dégât passe quand même.");
                                 }
                                 else
                                 {
@@ -309,7 +327,8 @@ class Program
             Console.WriteLine("n - no");
             string newGame = Console.ReadLine();
             if (newGame != "y")
-                break;
+            { }////* REPASSER BOOL A FALSE ??  *///
+            break;
         }
     }
 }
@@ -320,6 +339,9 @@ public class Personnage
     public int health { get; set; }
     public int attack { get; set; }
     public int baseHealth { get; set; }
+
+    public bool oneShotEcid { get; set; }
+
     public Personnage(string name, int health, int attack)
     {
         this.name = name;
@@ -398,6 +420,7 @@ public class Tank : Personnage
 {
     public Tank() : base("Tank", 5, 1) { }
     public string SpecialAttackName { get; } = "Attaque puissante";
+    bool
 
     public void AttaquePuissante(Personnage cible)
     {
@@ -408,11 +431,10 @@ public class Tank : Personnage
 
 public class Ecid : Personnage
 {
+    public Ecid() : base("Ecid", 4, 0)  /* ) /// → valeur d'attaque a zéro, remplacée par méthode "EcidAttack */
     public string SpecialAttackName { get; } = "Tiafrap";
 
     public void Tiafrap(Personnage cible)
-
-    public Ecid() : base("Ecid", 4, 0 )  /* ) /// MODIF A FAIRE : Changer valeur 3e paramètre, initialment la valeur de l' *//
     {
         int rollDice = random.Next(1, 101);
 
@@ -425,15 +447,18 @@ public class Ecid : Personnage
             cible.health -= 0; /* Rien ne se passe */
         }
         else if (rollDice <= 60)
-{
-    cible.health -= 1;
-}
-else if (rollDice <= 80)
-{
-    cible.health -= 2;
-}
-else
-{
-    cible.health = 0; /* */
-}
+        {
+            cible.health -= 1;
+        }
+        else if (rollDice <= 80)
+        {
+            cible.health -= 2;
+        }
+        else
+        {
+            oneShotEcid = true;
+            cible.health = 0; /* ONE SHOT */
+        }
     }
+}
+
