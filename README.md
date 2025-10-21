@@ -3,7 +3,7 @@
 Ceci est un jeu de combat au tour par tour, dans lequel vous endossez le rôle d'un personnage, qui devra affronter une IA.
 Des commandes vous seront demandées par le programme, elles seront à saisir au clavier 
 
-1. NIVEAUX DE DIFFICULTE : 
+1. NIVEAUX DE DIFFICULTÉ : 
 En début de partie vous pourrez choisir le niveau de difficulté, parmi les 3 suivantes :
 - Facile
 - Normal
