@@ -1,35 +1,50 @@
 # Jeu de combat
 
-Ceci est un jeu de combat, vous affrontrez une ia.
+Ceci est un jeu de combat au tour par tour, dans lequel vous endossez le rôle d'un personnage, qui devra affronter une IA.
+Des commandes vous seront demandées par le programme, elles seront à saisir au clavier 
 
-En début de partie vous pourrez choisir le niveau de difficulté :
-- facile
-- normal
-- difficile
+1. NIVEAUX DE DIFFICULTE : 
+En début de partie vous pourrez choisir le niveau de difficulté, parmi les 3 suivantes :
+- Facile
+- Normal
+- Difficile
+
+2. CLASSES DE PERSONNAGES :
 
 Ensuite vous pourrez choisir votre classe de personnage parmis les suivantes :
-- damager
-  - vie : 3 pv
-  - attaque : -2 pv contre l'IA
-  - action spéciale : Il peut renvoyer les dégâts qu’on lui inflige.
-- healer
-  - vie : 4 pv
-  - attaque : -1 pv contre l'IA
-  - action spéciale : Il peut se soigner de 2pv
-- tank
-  - vie : 5 pv
-  - attaque : -1 pv contre l'IA
-  - action spéciale : Il sacrifie 1pv pour augmenter son attaque de 1.
-- ecid
-  - vie : 4 pv
-  - attaque : lance un D10, quand le résultat est inférieur à 8 il fait -1 pv contre l'IA sinon il double son attaque
-  - action spéciale : lance un D10, 4 faces font 1 pv contre l'IA, 2 faces font 2 pv contre l'IA, 2 faces tue instantanément l'enemie en face, 1 face ne fait rien et 1 face nous enlève 1 pv
 
+- Damager :
+  - Points de vie : 3 pv
+  - Force d'attaque : inflige 2 points de dégats l'IA
+  - Capacité spéciale : Il peut renvoyer les dégâts qu’on lui inflige.
+  
+- Healer
+  - Points de vie : 4 pv
+  - Force d'attaque : inflige 1 point de dégat à l'IA
+  - Capacité spéciale : Il peut se soigner de 2pv
+ 
+- Tank
+  - Points de vie : 5 pv
+  - Force d'attaque : inflige 1 point de dégat à l'IA
+  - Capacité spéciale : Il sacrifie 1pv pour augmenter son attaque de 1.
+ 
+- Ecid
+  - Points de vie : 4 pv
+  - Force d'attaque : lance un D10, quand le résultat est inférieur à 8 il fait -1 pv contre l'IA sinon il double son attaque
+  - Capacité spéciale : le personnage lance un D10, si son résultat est : 
+        - 1 : il s'inflige lui même 1 point de dégat.
+        - 2 : il ne fait aucun dégât
+        - Compris entre 3 et 6 :  Il inflige 1 point de dégat à l'ennemi 
+        - Compris entre 7 et 8 :  Il inflige 2 points de dégats à l'ennemi
+        - Compris entre 9 et 10 : Il tue instantanément l'adversaire, y compris si ce dernier choisi de se défendre
+
+3. ACTIONS POSSIBLES : 
 Vous pourrez jouer tour par tour et choisir l'une des actions suivante :
-- attaque : elle enlève de la vie à l'énemie
-- défense : elle contre complètement les attaques de l'énemie
-- l'action spéciale
+- Attaque : elle enlève de la vie à l'énemie
+- Défense : elle contre complètement les attaques de l'énemie
+- Action spéciale
 
-La partie se termine lorsque l'un d'entre vous voit sa vie mis à 0
+4. CONDITIONS DE VICTOIRE : 
+La partie se termine lorsque l'un d'entre vous est tué, et donc que ses points de vie tombent à zéro. 
 
 # Bonne chance
