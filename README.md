@@ -1,15 +1,13 @@
 # Jeu de combat
 
+Ceci est un jeu de combat, vous affrontrez une ia.
 
-Ce jeu se joue uniquement au clavier
+En début de partie vous pourrez choisir le niveau de difficulté :
+- facile
+- normal
+- difficile
 
-
-Il y a 3 actions
-- attaque : elle enlève de la vie à l'énemie
-- défense : elle contre complètement les attaques de l'énemie
-- l'action spéciale
-
-Il existe 4 classes :
+Ensuite vous pourrez choisir votre classe de personnage parmis les suivantes :
 - damager
   - vie : 3 pv
   - attaque : -2 pv contre l'IA
@@ -26,3 +24,12 @@ Il existe 4 classes :
   - vie : 4 pv
   - attaque : lance un D10, quand le résultat est inférieur à 8 il fait -1 pv contre l'IA sinon il double son attaque
   - action spéciale : lance un D10, 4 faces font 1 pv contre l'IA, 2 faces font 2 pv contre l'IA, 2 faces tue instantanément l'enemie en face, 1 face ne fait rien et 1 face nous enlève 1 pv
+
+Vous pourrez jouer tour par tour et choisir l'une des actions suivante :
+- attaque : elle enlève de la vie à l'énemie
+- défense : elle contre complètement les attaques de l'énemie
+- l'action spéciale
+
+La partie se termine lorsque l'un d'entre vous voit sa vie mis à 0
+
+# Bonne chance
